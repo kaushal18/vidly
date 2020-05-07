@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import MoviesTable from "./moviesTable";
 import { getMovies, deleteMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
@@ -37,7 +38,7 @@ class Movies extends Component {
       await deleteMovie(movie._id);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        alert("this movie is already deleted");
+        toast.error("this movie is already deleted");
 
       this.setState({ movies: originalMovie });
     }
