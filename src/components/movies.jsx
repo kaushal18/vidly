@@ -104,6 +104,8 @@ class Movies extends Component {
       sortColumn,
     } = this.state;
 
+    const { user } = this.props;
+
     if (this.state.movies.length === 0) return <p>There are no movies</p>;
 
     // filter -> sort -> paginate
@@ -121,13 +123,15 @@ class Movies extends Component {
         </div>
 
         <div className="col">
-          <Link
-            className="btn btn-primary"
-            to="/movies/new"
-            style={{ marginBottom: 20 }}
-          >
-            New Movie
-          </Link>
+          {user && (
+            <Link
+              className="btn btn-primary"
+              to="/movies/new"
+              style={{ marginBottom: 20 }}
+            >
+              New Movie
+            </Link>
+          )}
 
           <p>Showing {totalCount} movies in the database</p>
 
